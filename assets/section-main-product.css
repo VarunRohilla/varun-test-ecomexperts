@@ -1598,3 +1598,14 @@ a.product__text {
     border: none;
   }
 }
+
+
+/** VR Custom CSS 26/Nov/2023 **/
+fieldset.js.product-form__input.color label {
+  font-size: 0;
+  height: 60px;
+  width: 60px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: 100% 100%;
+}

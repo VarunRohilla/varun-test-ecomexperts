@@ -21,6 +21,7 @@
   assign variants_option3_arr = product.variants | map: 'option3'
 
   assign product_form_id = 'product-form-' | append: section.id
+  assign variants_featured_img = product.variants | map: 'featured_image' | uniq
 -%}
 
 {%- for value in option.values -%}
@@ -59,7 +60,12 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+    <label
+      for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+      {% if option.name == 'Color' %}
+        style="background-image: url({{variants_featured_img[forloop.index0] | img_url: 'master' }})"
+      {% endif %}
+    >
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>

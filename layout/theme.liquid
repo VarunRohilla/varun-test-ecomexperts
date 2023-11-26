@@ -281,10 +281,12 @@
       }
     </script>
 
-    <script>
-      const matchingID = {{settings.variant_id}}; //ID of the variant with additional product needs to be added.
-      const additionalProductVariantID = {{all_products[settings.additional_product].first_available_variant.id}}; //ID of the additional product needs to be added.
-    </script>
+    {%- if settings.variant_id != blank and settings.additional_product != blank -%}
+      <script>
+        const matchingID = {{settings.variant_id}}; //ID of the variant with additional product needs to be added.
+        const additionalProductVariantID = {{all_products[settings.additional_product].first_available_variant.id}}; //ID of the additional product needs to be added.
+      </script>
+    {%- endif -%}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
