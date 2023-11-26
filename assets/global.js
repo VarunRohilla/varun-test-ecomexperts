@@ -964,7 +964,7 @@ class VariantSelects extends HTMLElement {
       this.setUnavailable();
     } else {
       this.updateMedia();
-      this.updateURL();
+      // this.updateURL(); // Revoke updating the URL in URL Bar of the Browser
       this.updateVariantInput();
       this.renderProductInfo();
       this.updateShareUrl();
@@ -1017,7 +1017,21 @@ class VariantSelects extends HTMLElement {
     );
     productForms.forEach((productForm) => {
       const input = productForm.querySelector('input[name="id"]');
+      console.log(matchingID, additionalProductVariantID);
       input.value = this.currentVariant.id;
+
+      // Creating a hidden input to add the additional product Item.
+      var hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'items[1][id]';
+
+      if(input.value == matchingID) {
+        hiddenInput.value = additionalProductVariantID;
+        productForm.appendChild(hiddenInput);
+      } else {
+        var existingHiddenInput = productForm.querySelector('input[name="items[1][id]"]');
+        productForm.removeChild(existingHiddenInput);
+      }
       input.dispatchEvent(new Event('change', { bubbles: true }));
     });
   }

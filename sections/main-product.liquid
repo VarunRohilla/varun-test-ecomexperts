@@ -1,8 +1,22 @@
+{% comment %}
+  Putting a codition here to match the product with the selected one in the theme settings and showing a message if matches
+{% endcomment %}
+{% assign additional_product = all_products[settings.additional_product] %}
+{%- if product.id == additional_product.id -%}
+  <section
+  id="MainProduct-{{ section.id }}"
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+  data-section="{{ section.id }}">
+  <div class="page-width">
+    <h1>This Product is not available for normal purchase</h1>
+    <a href="/collections/all" class="button button--primary">Continue Shopping</a>
+  </div>
+  </section>
+{%- else -%}
 <section
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
-  data-section="{{ section.id }}"
->
+  data-section="{{ section.id }}">
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -669,6 +683,7 @@
   </script>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
