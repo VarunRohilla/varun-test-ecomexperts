@@ -966,7 +966,7 @@ class VariantSelects extends HTMLElement {
       this.updateMedia();
       // this.updateURL(); // Revoke updating the URL in URL Bar of the Browser
       this.updateVariantInput();
-      if(document.getElementById('Option-size').value != ''){
+      if(document.getElementById('Option-size').value != '') {
         this.renderProductInfo();
       }
       this.updateShareUrl();
