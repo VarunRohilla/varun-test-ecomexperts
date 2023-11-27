@@ -106,6 +106,15 @@ document.getElementById('Option-size').addEventListener('change', function () {
   // Find the corresponding radio button based on the selected value
   var sizeRadioLabel = document.querySelector(`label[data-option-value="${selectedValue}"]`);
 
+  if(selectedValue == "") {
+    var buttons = document.querySelectorAll('.product-form__buttons button');
+
+    // Disable each button
+    buttons.forEach(function (button) {
+      button.disabled = true;
+    });
+    return;
+  }
   // Click on the radio button label
   if (sizeRadioLabel) {
     sizeRadioLabel.click();
