@@ -966,9 +966,7 @@ class VariantSelects extends HTMLElement {
       this.updateMedia();
       // this.updateURL(); // Revoke updating the URL in URL Bar of the Browser
       this.updateVariantInput();
-      if(document.getElementById('Option-size').value != '') {
-        this.renderProductInfo();
-      }
+      this.renderProductInfo();
       this.updateShareUrl();
     }
   }
@@ -1153,10 +1151,13 @@ class VariantSelects extends HTMLElement {
         if (inventoryDestination) inventoryDestination.classList.toggle('hidden', inventorySource.innerText === '');
 
         const addButtonUpdated = html.getElementById(`ProductSubmitButton-${sectionId}`);
+        
+      if(document.getElementById('Option-size').value != '') {
         this.toggleAddButton(
           addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true,
           window.variantStrings.soldOut
         );
+      }
 
         publish(PUB_SUB_EVENTS.variantChange, {
           data: {
