@@ -98,3 +98,16 @@ if (!customElements.get('product-info')) {
     }
   );
 }
+
+
+document.getElementById('Option-size').addEventListener('change', function () {
+  // Get the selected value from the dropdown
+  var selectedValue = this.value;
+  // Find the corresponding radio button based on the selected value
+  var sizeRadioLabel = document.querySelector(`label[data-option-value="${selectedValue}"]`);
+
+  // Click on the radio button label
+  if (sizeRadioLabel) {
+    sizeRadioLabel.click();
+  }
+});

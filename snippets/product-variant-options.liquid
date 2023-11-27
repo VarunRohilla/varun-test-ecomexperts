@@ -53,7 +53,7 @@
       name="{{ option.name }}"
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
-      {% if option.selected_value == value %}
+      {% if option.selected_value == value and option.name != 'Size' %}
         checked
       {% endif %}
       {% if option_disabled %}
@@ -62,6 +62,7 @@
     >
     <label
       for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+      data-option-value="{{ value -}}"
       {% if option.name == 'Color' %}
         style="background-image: url({{variants_featured_img[forloop.index0] | img_url: 'master' }})"
       {% endif %}

@@ -25,6 +25,17 @@
         <fieldset class="js product-form__input {{ option.name | downcase }}">
           <legend class="form__label">{{ option.name }}</legend>
           {% render 'product-variant-options', product: product, option: option, block: block %}
+
+          {%- if option.name == 'Size' -%}
+            <select id="Option-{{ option.name |  downcase }}">
+              <option value="" selected="selected">Unselected</option>
+              {%- for value in option.values -%}
+                <option value="{{ value | escape }}">
+                  {{- value -}}
+                </option>
+              {%- endfor -%}
+            </select>
+          {%- endif -%}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
